@@ -108,7 +108,7 @@ export default function SignUp() {
             {/* Submit */}
             <button
               type="submit"
-              disabled={loading || !agreedToTerms}
+              disabled={loading}
               className="w-full bg-secondary-container text-on-secondary-container font-headline-md text-headline-md py-stack-sm rounded-lg hover:bg-secondary-fixed transition-colors active:scale-[0.98] mt-stack-xs disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading
