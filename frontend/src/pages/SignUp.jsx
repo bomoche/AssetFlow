@@ -105,23 +105,6 @@ export default function SignUp() {
               />
             </div>
 
-            {/* Terms */}
-            <div className="flex items-start gap-stack-xs py-stack-xs">
-              <input
-                id="terms"
-                type="checkbox"
-                checked={agreedToTerms}
-                onChange={e => setAgreedToTerms(e.target.checked)}
-                className="mt-1 w-4 h-4 border-outline rounded text-primary"
-              />
-              <label htmlFor="terms" className="font-body-sm text-body-sm text-on-surface-variant">
-                I agree to the{' '}
-                <a href="#" className="text-secondary font-semibold hover:underline">Terms of Service</a>
-                {' '}and{' '}
-                <a href="#" className="text-secondary font-semibold hover:underline">Privacy Policy</a>.
-              </label>
-            </div>
-
             {/* Submit */}
             <button
               type="submit"

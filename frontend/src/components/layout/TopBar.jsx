@@ -1,6 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import ROUTES from '../../constants/routes';
 
 
 export default function TopBar() {
