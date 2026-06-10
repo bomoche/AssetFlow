@@ -1,70 +1,225 @@
-# Getting Started with Create React App
+# AssetFlow — Investment Withdrawal Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack investment withdrawal management system built for Enviro365 Investments. The system allows investors to view their portfolios, submit withdrawal requests, view transaction history, and download CSV statements.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Repository Structure
 
-### `npm start`
+This is a monorepo containing both the frontend and backend:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+assetflow/
+├── frontend/          ← React.js application
+├── backend/           ← Spring Boot REST API
+├── .github/
+│   └── workflows/
+│       └── build-and-test.yml
+└── README.md
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Development History
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+During development, separate repositories were maintained to demonstrate proper Git branching strategy, feature-based commits, and professional version control practices:
 
-### `npm run build`
+- **Frontend development history:** https://github.com/bomoche/Investment-management-system
+- **Backend development history:** https://github.com/bomoche/enviro365-backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Both repositories contain full commit histories with feature branches including:
+- `feature/project-setup`
+- `feature/layout-components`
+- `feature/portfolio-page`
+- `feature/withdraw-page`
+- `feature/history-page`
+- `feature/api-integration`
+- `feature/separate-ui-logic`
+- `feature/routing`
+- `feature/auth`
+- `feature/unit-tests`
+- `feature/swagger`
+- `feature/data-seeder`
+- `feature/exception-handling`
+- `feature/validation`
+- `feature/github-actions`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The final combined solution is in this repository on the main branch as required by the submission guidelines.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Frontend:**
+- React.js
+- React Router DOM
+- Tailwind CSS
+- Custom hooks architecture
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Backend:**
+- Spring Boot 3.5.x
+- Spring Security + JWT Authentication
+- Spring Data JPA
+- H2 File-Based Database
+- Lombok
+- Swagger / OpenAPI
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**DevOps:**
+- GitHub Actions CI/CD
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Prerequisites
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Java 17
+- Node.js 20+
+- Maven
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend Setup
 
-### Analyzing the Bundle Size
+```bash
+cd backend
+./mvnw spring-boot:run
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Backend runs on: `http://localhost:8080`
 
-### Making a Progressive Web App
+H2 Console: `http://localhost:8080/h2-console`
+- JDBC URL: `jdbc:h2:file:./data/enviro365db`
+- Username: `sa`
+- Password: (leave empty)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Frontend Setup
 
-### Deployment
+```bash
+cd frontend
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Frontend runs on: `http://localhost:3000`
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Demo Credentials
+Email:    thabo.nkosi@enviro365.co.za
+Password: password123
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/api/auth/login` | Login and receive JWT | Public |
+| POST | `/api/auth/register` | Register new investor | Public |
+| GET | `/api/investors/{id}/portfolio` | Get investor portfolio | Required |
+| POST | `/api/withdrawals` | Submit withdrawal | Required |
+| GET | `/api/withdrawals?investorId={id}` | Get withdrawal history | Required |
+| GET | `/api/withdrawals/export?investorId={id}` | Download CSV | Required |
+
+---
+
+## Business Rules
+
+- Retirement fund withdrawals only permitted for investors older than 65
+- Withdrawal amount cannot exceed the available balance
+- Withdrawal amount cannot exceed 90% of the available balance
+- All monetary values handled using `BigDecimal` for financial precision
+
+---
+
+## Architecture
+
+### Backend — Layered Architecture
+Controller → Service → Repository → Database
+
+- **Controller** — handles HTTP requests, delegates to service
+- **Service** — contains all business logic and validation
+- **Repository** — database access only
+- **Entity** — JPA mapped database tables
+- **DTO** — data transfer objects, entities never exposed directly
+
+### Frontend — Feature-Sliced Architecture
+
+Pages → Hooks → API Layer → Backend
+
+- **Pages** — UI only, no logic
+- **Hooks** — all state and business logic
+- **API Layer** — all HTTP calls centralised in one file
+
+---
+
+## Advanced Features Implemented
+
+- JWT Authentication with Spring Security
+- Global Exception Handler with consistent error responses
+- DTO layer — entities never exposed to clients
+- Input validation with Bean Validation annotations
+- Business rule validation in dedicated validator class
+- Unit tests with JUnit and Mockito
+- GitHub Actions CI/CD pipeline
+- Swagger UI API documentation
+- Persistent H2 file-based database
+- CSV export with custom headers
+
+---
+
+## Testing
+
+```bash
+cd backend
+./mvnw test
+```
+
+Test coverage includes:
+- `WithdrawalServiceTest` — service layer business logic
+- `WithdrawalValidatorTest` — all business rule scenarios
+
+---
+
+## AI Tools Disclosure
+
+As permitted by the assessment guidelines, the following AI tools were used:
+
+| Tool | Usage |
+|------|-------|
+| **Stitch by Google** | UI/UX design — generated the initial HTML/CSS designs for Portfolio, Withdrawal, and History screens |
+| **Claude** | Implementation assistance
+
+All AI-assisted code was reviewed, understood, and adapted by the developer. The architecture decisions, business logic implementation, and integration work were directed and executed by the developer.
+
+---
+
+## UI Design
+
+The UI was designed with a mobile-first approach and is fully responsive for both mobile and desktop:
+
+- **Mobile:** Floating bottom navigation bar with active state indicator
+- **Desktop:** Fixed sidebar navigation
+- Clean financial services aesthetic using navy blue and gold color scheme
+- Optimized for mobile devices while maintaining full desktop responsiveness
+
+---
+
+## Assumptions Made
+
+- A single demo investor is seeded on startup for assessment purposes
+- The H2 database is file-based and persistent between restarts
+- Authentication uses JWT tokens stored in localStorage
+- Date of birth is used to calculate investor age dynamically — age is never stored
+- `balanceAfterWithdrawal` is snapshotted at the time of withdrawal for accurate historical records
+
+---
+
+## Contact
+
+**Bongani Moche**
+bonganimoche@wethinkcode.com
+https://github.com/bomoche
