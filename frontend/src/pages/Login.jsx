@@ -71,7 +71,7 @@ export default function Login() {
               <label className="font-label-caps text-label-caps text-on-surface-variant" htmlFor="password">
                 Password
               </label>
-              <a href="#" className="font-label-caps text-label-caps text-secondary hover:underline">
+              <a href="/" className="font-label-caps text-label-caps text-secondary hover:underline">
                 Forgot Password?
               </a>
             </div>

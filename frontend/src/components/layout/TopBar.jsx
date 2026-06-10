@@ -2,11 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 
-const navItems = [
-  { path: ROUTES.PORTFOLIO, icon: 'pie_chart', label: 'Portfolio' },
-  { path: ROUTES.WITHDRAW,  icon: 'payments',  label: 'Withdraw'  },
-  { path: ROUTES.HISTORY,   icon: 'history',   label: 'History'   },
-];
 
 export default function TopBar() {
   return (

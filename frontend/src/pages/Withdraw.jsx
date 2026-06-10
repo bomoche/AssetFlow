@@ -182,7 +182,7 @@ function WithdrawalForm({ selectedProduct, onWithdrawSuccess, onBack }) {
 
 export default function Withdraw({ selectedProduct: initialProduct, onWithdrawSuccess }) {
   const [activeProduct, setActiveProduct] = React.useState(initialProduct);
-  const { investor, loading, error } = usePortfolio();
+  const { investor, loading } = usePortfolio();
 
   // Sync if parent passes a product from portfolio page
   React.useEffect(() => {

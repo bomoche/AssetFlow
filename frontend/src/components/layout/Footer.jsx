@@ -11,9 +11,9 @@ export default function Footer() {
           </span>
         </div>
         <div className="flex gap-stack-md">
-          <a href="#" className="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm">Privacy Policy</a>
-          <a href="#" className="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm">Terms of Service</a>
-          <a href="#" className="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm">Contact Support</a>
+          <a href="/" className="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm">Privacy Policy</a>
+          <a href="/" className="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm">Terms of Service</a>
+          <a href="/" className="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm">Contact Support</a>
         </div>
       </div>
     </footer>
