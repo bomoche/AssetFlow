@@ -35,7 +35,7 @@ export default function Login() {
         {/* Mock credentials hint */}
         <div className="mb-stack-md p-stack-sm bg-surface-container border border-outline-variant rounded-lg">
           <p className="font-label-caps text-label-caps text-on-surface-variant mb-stack-xs">DEMO CREDENTIALS</p>
-          <p className="font-data-mono text-data-mono text-on-surface">investor@enviro365.co.za</p>
+          <p className="font-data-mono text-data-mono text-on-surface">thabo.nkosi@enviro365.co.za</p>
           <p className="font-data-mono text-data-mono text-on-surface">password123</p>
         </div>
 
@@ -60,7 +60,7 @@ export default function Login() {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
-              placeholder="e.g. investor@enviro365.co.za"
+              placeholder="e.g. thabo.nkosi@enviro365.co.za"
               className="w-full h-12 px-stack-sm border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg font-body-md bg-white outline-none transition-all"
             />
           </div>

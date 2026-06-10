@@ -212,14 +212,12 @@ The UI was designed with a mobile-first approach and is fully responsive for bot
 
 - A single demo investor is seeded on startup for assessment purposes
 - The H2 database is file-based and persistent between restarts
-- Authentication uses JWT tokens stored in localStorage
-- Date of birth is used to calculate investor age dynamically — age is never stored
-- `balanceAfterWithdrawal` is snapshotted at the time of withdrawal for accurate historical records
+
 
 ---
 
 ## Contact
 
 **Bongani Moche**
-bonganimoche@wethinkcode.com
+bonganimoche@wethinkcode.co.za
 https://github.com/bomoche
