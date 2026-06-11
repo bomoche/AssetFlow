@@ -37,7 +37,7 @@ public class WithdrawalService {
 
         // Step 1: Verify investor exists
         Investor investor = investorRepository.findById(dto.getInvestorId())
-                .orElseThrow(() -> new InvestorNotFoundException(dto.getInvestorId()));
+                .orElseThrow(() -> new InvestorNotFoundException());
 
         // Step 2: Verify product exists and belongs to this investor
         InvestmentProduct product = productRepository
@@ -80,7 +80,7 @@ public class WithdrawalService {
 
         // Verify investor exists before fetching history
         if (!investorRepository.existsById(investorId)) {
-            throw new InvestorNotFoundException(investorId);
+            throw new InvestorNotFoundException();
         }
 
         return withdrawalRepository.findByInvestorId(investorId)
@@ -102,7 +102,7 @@ public class WithdrawalService {
     public String exportToCsv(Long investorId) {
 
         if (!investorRepository.existsById(investorId)) {
-            throw new InvestorNotFoundException(investorId);
+            throw new InvestorNotFoundException();
         }
 
         List<WithdrawalNotice> notices = withdrawalRepository

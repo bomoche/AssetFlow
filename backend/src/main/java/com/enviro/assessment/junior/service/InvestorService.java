@@ -22,7 +22,7 @@ public class InvestorService {
     public PortfolioResponseDto getPortfolio(Long investorId) {
         // Fetch investor or throw 404
         Investor investor = investorRepository.findById(investorId)
-                .orElseThrow(() -> new InvestorNotFoundException(investorId));
+                .orElseThrow(() -> new InvestorNotFoundException());
 
         // Calculate age dynamically
         int age = Period.between(investor.getDateOfBirth(), LocalDate.now()).getYears();

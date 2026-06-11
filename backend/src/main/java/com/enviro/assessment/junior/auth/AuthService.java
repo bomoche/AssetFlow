@@ -4,6 +4,7 @@ import com.enviro.assessment.junior.auth.dto.AuthResponseDto;
 import com.enviro.assessment.junior.auth.dto.LoginRequestDto;
 import com.enviro.assessment.junior.auth.dto.RegisterRequestDto;
 import com.enviro.assessment.junior.entity.Investor;
+import com.enviro.assessment.junior.exception.InvestorNotFoundException;
 import com.enviro.assessment.junior.exception.WithdrawalValidationException;
 import com.enviro.assessment.junior.repository.InvestorRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +52,7 @@ public class AuthService {
     public AuthResponseDto login(LoginRequestDto dto) {
 
         Investor investor = investorRepository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new WithdrawalValidationException("Invalid email or password."));
+                .orElseThrow(() -> new InvestorNotFoundException());
 
         if (!passwordEncoder.matches(dto.getPassword(), investor.getPassword())) {
             throw new WithdrawalValidationException("Invalid email or password.");
